@@ -6,11 +6,13 @@
     "useIgnoreFile": true
   },
   "files": {
-    "ignoreUnknown": false
+    "ignoreUnknown": false,
+    "includes": ["!apps/web/src/route-tree-gen.ts"]
   },
   "formatter": {
     "enabled": true,
-    "indentStyle": "tab"
+    "indentStyle": "tab",
+    "lineWidth": 80
   },
   "linter": {
     "enabled": true,
@@ -20,7 +22,8 @@
   },
   "javascript": {
     "formatter": {
-      "quoteStyle": "double"
+      "quoteStyle": "double",
+      "semicolons": "always"
     }
   },
   "assist": {

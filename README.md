@@ -122,32 +122,32 @@ pnpm check-types
 
 ## Shared Packages
 
-### `@repo/eslint-config`
+### `@metricare/eslint-config`
 
 Flat-config ESLint presets ready to extend:
 
 ```js
 // eslint.config.js in any workspace
-import { config } from "@repo/eslint-config/vite"; // or /base, /node
+import { config } from "@metricare/eslint-config/vite"; // or /base, /node
 export default config;
 ```
 
-### `@repo/typescript-config`
+### `@metricare/typescript-config`
 
 Layered tsconfigs for consistent compiler options:
 
 ```json
 // tsconfig.json in any workspace
-{ "extends": "@repo/typescript-config/vite" }
+{ "extends": "@metricare/typescript-config/vite" }
 ```
 
-### `@repo/prettier-config`
+### `@metricare/prettier-config`
 
 A single Prettier config with TailwindCSS class sorting:
 
 ```json
 // package.json in any workspace
-{ "prettier": "@repo/prettier-config" }
+{ "prettier": "@metricare/prettier-config" }
 ```
 
 ---
@@ -163,9 +163,9 @@ cd apps/my-app
 pnpm create vite . --template react-ts
 
 # Extend the shared configs
-# tsconfig.json  →  { "extends": "@repo/typescript-config/vite" }
-# eslint.config  →  import { config } from "@repo/eslint-config/vite"
-# package.json   →  { "prettier": "@repo/prettier-config" }
+# tsconfig.json  →  { "extends": "@metricare/typescript-config/vite" }
+# eslint.config  →  import { config } from "@metricare/eslint-config/vite"
+# package.json   →  { "prettier": "@metricare/prettier-config" }
 ```
 
 Turborepo picks up the new workspace automatically — no further root configuration needed.
@@ -181,7 +181,7 @@ cd packages/my-lib
 # Minimal package.json
 cat > package.json <<EOF
 {
-  "name": "@repo/my-lib",
+  "name": "@metricare/my-lib",
   "version": "0.0.0",
   "private": true,
   "main": "./src/index.ts"
@@ -189,7 +189,7 @@ cat > package.json <<EOF
 EOF
 ```
 
-Reference it from any app or package: `"@repo/my-lib": "workspace:*"`.
+Reference it from any app or package: `"@metricare/my-lib": "workspace:*"`.
 
 ---
 

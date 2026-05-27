@@ -1,0 +1,19 @@
+{
+  "devDependencies": {
+    "@biomejs/biome": "2.4.15",
+    "husky": "^9.1.7",
+    "turbo": "^2.9.14",
+    "ultracite": "7.8.0"
+  },
+  "name": "with-vite",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "check-types": "turbo run check-types",
+    "check": "ultracite check",
+    "fix": "ultracite fix",
+    "prepare": "husky"
+  },
+  "private": true,
+  "packageManager": "pnpm@8.15.6"
+}

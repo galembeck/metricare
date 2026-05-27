@@ -1,5 +1,5 @@
 {
-  "name": "@repo/eslint-config",
+  "name": "@metricare/eslint-config",
   "version": "0.0.0",
   "type": "module",
   "private": true,
@@ -19,9 +19,9 @@
     "globals": "^16.5.0",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.50.0",
-    "@repo/prettier-config": "workspace:*"
+    "@metricare/prettier-config": "workspace:*"
   },
-  "prettier": "@repo/prettier-config",
+  "prettier": "@metricare/prettier-config",
   "eslintConfig": {
     "extends": [
       "./base.js"

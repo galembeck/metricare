@@ -11,6 +11,9 @@ import {
 	validatorCompiler,
 	type ZodTypeProvider,
 } from "fastify-type-provider-zod";
+import { authenticateWithPasswordRoute } from "./http/routes/auth/authenticate-with-password";
+import { createAccountRoute } from "./http/routes/user/create-account";
+import { getProfileRoute } from "./http/routes/user/get-profile";
 
 const app = fastify().withTypeProvider<ZodTypeProvider>();
 
@@ -52,6 +55,11 @@ app.register(fastifyJwt, {
 });
 
 app.register(fastifyCors);
+
+app.register(authenticateWithPasswordRoute);
+
+app.register(createAccountRoute);
+app.register(getProfileRoute);
 
 app.listen({ port: env.PORT, host: "0.0.0.0" }).then(() => {
 	console.log(`🚀 | HTTP server running at http://localhost:${env.PORT}`);

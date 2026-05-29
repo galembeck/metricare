@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 | `PORT`                 | `z.coerce.number()` (def 3333)| server    |
 | `DATABASE_URL`         | `z.url()`                     | server    |
 | `JWT_SECRET`           | `z.string()`                  | server    |
-| `NEXT_PUBLIC_API_URL`  | `z.url()`                     | shared    |
+| `VITE_PUBLIC_API_URL`  | `z.url()`                     | shared    |
 
 `emptyStringAsUndefined: true` — empty strings are treated as missing.
 

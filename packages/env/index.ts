@@ -11,10 +11,10 @@ export const env = createEnv({
 		JWT_SECRET: z.string(),
 	},
 	shared: {
-		NEXT_PUBLIC_API_URL: z.url(),
+		VITE_PUBLIC_API_URL: z.url(),
 	},
 	runtimeEnv: {
-		NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+		VITE_PUBLIC_API_URL: process.env.VITE_PUBLIC_API_URL,
 
 		PORT: process.env.PORT,
 

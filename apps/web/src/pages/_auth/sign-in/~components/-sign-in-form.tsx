@@ -1,7 +1,7 @@
 /** biome-ignore-all lint/correctness/noChildrenProp: required by field component from @shadcn-ui */
 
 import { useForm } from "@tanstack/react-form";
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { z } from "zod";
 import { PasswordInput } from "@/components/password-input";
@@ -14,6 +14,8 @@ import {
 	FieldLabel,
 } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
+import { usePostAuthSessionsPassword } from "@/http/gen/hooks/AuthHooks";
+import { setCookie } from "@/lib/cookie";
 
 const signInSchema = z.object({
 	email: z.email({ message: "O e-mail deve ter um formato válido" }),
@@ -24,6 +26,9 @@ const signInSchema = z.object({
 });
 
 export function SignInForm() {
+	const navigate = useNavigate();
+	const { mutateAsync, isPending } = usePostAuthSessionsPassword();
+
 	const form = useForm({
 		defaultValues: {
 			email: "",
@@ -33,8 +38,20 @@ export function SignInForm() {
 		validators: {
 			onSubmit: signInSchema,
 		},
-		onSubmit: ({ value }) => {
-			console.log(value);
+		onSubmit: async ({ value }) => {
+			const { accessToken } = await mutateAsync({
+				data: {
+					identifier: value.email,
+					password: value.password,
+					keepAlive: value.keepAlive,
+				},
+			});
+
+			setCookie("accessToken", accessToken, {
+				maxAge: value.keepAlive ? 30 * 24 * 60 * 60 : undefined,
+			});
+
+			navigate({ to: "/" });
 		},
 	});
 
@@ -148,6 +165,7 @@ export function SignInForm() {
 
 			<Button
 				className="w-full rounded-xl py-6 font-semibold text-md"
+				disabled={isPending}
 				form="sign-in-form"
 				type="submit"
 				variant="gradient"

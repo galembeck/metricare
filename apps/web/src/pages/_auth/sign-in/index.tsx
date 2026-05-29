@@ -1,5 +1,6 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { Separator } from "@/components/ui/separator";
+import { isAuthenticated } from "@/providers/auth-provider";
 import { AuthNavbar } from "../~components/-auth-navbar";
 import { SidePanel } from "../~components/-side-panel";
 import { GoogleLoginButton } from "./~components/-google-login-button";
@@ -7,6 +8,11 @@ import { SignInForm } from "./~components/-sign-in-form";
 
 export const Route = createFileRoute("/_auth/sign-in/")({
 	component: SignInPage,
+	beforeLoad: () => {
+		if (isAuthenticated()) {
+			throw redirect({ to: "/" });
+		}
+	},
 	head: () => ({
 		meta: [{ title: "Entrar | Metricare" }],
 	}),

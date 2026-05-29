@@ -63,7 +63,7 @@ Copy `.env.example` to `.env` at the monorepo root before running the API. All v
 |----------------------|--------------------------------------|
 | `DATABASE_URL`       | PostgreSQL connection string         |
 | `JWT_SECRET`         | Secret for JWT signing               |
-| `NEXT_PUBLIC_API_URL`| Base URL the frontend calls          |
+| `VITE_PUBLIC_API_URL`| Base URL the frontend calls          |
 | `PORT`               | API port (default 3333)              |
 
 The `env:load` script in `apps/api` uses `dotenv-cli` to inject `.env` from the repo root before any command.
